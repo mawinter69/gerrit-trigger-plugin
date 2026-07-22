@@ -16,11 +16,13 @@
             <j:set var="serverURL" value="${it.url}"/>
             <div style="max-width: var(--form-item-max-width);">
               <l:app-bar title="Gerrit Server ${it.name}">
-                <button class="jenkins-button jenkins-!-destructive-color"
-                        data-type="dialog-opener"
-                        data-dialog-url="removeDialog">
-                  ${%Remove Server}
-                </button>
+                <j:if test="${!it.isLastServer()}">
+                    <button id="remove-server" class="jenkins-button jenkins-!-destructive-color"
+                            data-type="dialog-opener"
+                            data-dialog-url="removeDialog">
+                      ${%Remove Server}
+                    </button>
+                </j:if>
               </l:app-bar>
             </div>
             <f:form method="post" action="configSubmit" name="config" tableClass="config-table" class="jenkins-form">
